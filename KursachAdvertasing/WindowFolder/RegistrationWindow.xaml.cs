@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KursachAdvertasing.ClassFolder;
+using KursachAdvertasing.DataFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,24 +26,45 @@ namespace KursachAdvertasing.WindowFolder
             InitializeComponent();
         }
 
-        private void RegistrationBTN_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BackTB_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
 
         private void CloseIm_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            MBClass.ExitMB();
+        }
 
+        private void RegistrationBTN_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DBEntities.GetContext().User.Add(new User()
+                {
+                    Login = LoginTb.Text,
+                    Password = PasswordPB.Password,
+                    IdRole = 2
+                });
+                DBEntities.GetContext().SaveChanges();
+
+                MBClass.InfoMB("Вы успешно зарегистрировались");
+                new AuthorizationWindow().Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MBClass.ErrorMB(ex);
+            }
+        }
+
+        private void BackTB_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            new AuthorizationWindow().Show();
+            Close();
         }
     }
 }

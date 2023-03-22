@@ -1,5 +1,4 @@
 ﻿using KursachAdvertasing.ClassFolder;
-using KursachAdvertasing.PageFolder.AdvertasingFolder;
 using KursachAdvertasing.PageFolder.CustomerFolder;
 using System;
 using System.Collections.Generic;
@@ -18,14 +17,13 @@ using System.Windows.Shapes;
 namespace KursachAdvertasing.WindowFolder
 {
     /// <summary>
-    /// Логика взаимодействия для AdvertasingWindow.xaml
+    /// Логика взаимодействия для CustomerWindow.xaml
     /// </summary>
-    public partial class AdvertasingWindow : Window
+    public partial class CustomerWindow : Window
     {
-        public AdvertasingWindow()
+        public CustomerWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new AdvertasingListPage());
         }
 
         private void CloseIm_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -35,12 +33,12 @@ namespace KursachAdvertasing.WindowFolder
 
         private void ListBookBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new AdvertasingListPage());
+            MainFrame.Navigate(new CustomerListPage());
         }
 
         private void AddBookBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new AddAdvertasingPage());
+            MainFrame.Navigate(new AddCustomerPage());
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
